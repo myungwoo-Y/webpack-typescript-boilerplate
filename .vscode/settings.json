@@ -1,0 +1,23 @@
+{
+ "eslint.packageManager": "yarn",
+  "eslint.nodeEnv": "",
+  "editor.formatOnSave": true,
+  "eslint.trace.server": "messages",
+  "eslint.alwaysShowStatus": true,
+  "eslint.validate": [
+    "html",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
+  ],
+  "eslint.codeAction.showDocumentation": {
+      "enable": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.options": {
+    "configFile": ".eslintrc"
+  }
+}

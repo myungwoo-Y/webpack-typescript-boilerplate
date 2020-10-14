@@ -1,0 +1,14 @@
+# ignore service worker
+src/serviceWorker.ts
+
+# default ignore
+!**/.eslintrc*
+node_modules*
+dist
+*.svg
+*.ico
+*.json
+.gitignore
+*.md
+*.log
+*.lock

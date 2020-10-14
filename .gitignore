@@ -1,3 +1,6 @@
+# ignore module
 node_modules
 
+# ignore output folder
 dist
+public

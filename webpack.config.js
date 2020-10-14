@@ -1,21 +1,44 @@
 const path = require('path');
+const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const devMode = process.env.NODE_ENV !== 'production'
+
+const plugins = [
+  new MiniCssExtractPlugin({ 
+    filename: 'styles/[name].css' 
+  }),
+  new HtmlWebpackPlugin({
+      template: path.join(__dirname, './src/index.html'),
+      inject: true,
+      filename: path.join(__dirname, './public/index.html')
+  })
+]
+
+if (devMode) {
+  // only enable hot in development
+  plugins.push(new webpack.HotModuleReplacementPlugin());
+}
+
 
 module.exports = {
   entry: ['@babel/polyfill', './src/ts/main.ts', './src/styles/main.scss'],
   output: {
-    path: path.resolve(__dirname, 'dist/js'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'public/'),
+    filename: 'js/bundle.js'
   },
-  plugins: [
-    new MiniCssExtractPlugin({ filename: '../css/style.css' }),
-    new HtmlWebpackPlugin({
-        template: path.join(__dirname, './src/index.html'),
-        inject: true,
-        filename: path.join(__dirname, './dist/index.html')
-    })
-  ],
+  plugins,
+  devServer: {
+    contentBase: path.resolve(__dirname, 'public/'),
+    publicPath: "/",
+    host: "localhost",
+    overlay: true,
+    port: 8080,
+    stats: "errors-only",
+    historyApiFallback: true,
+    watchContentBase: true,
+  },
   module: {
     rules: [
       {
@@ -35,7 +58,7 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-            MiniCssExtractPlugin.loader,
+          MiniCssExtractPlugin.loader,
           "css-loader",  
           "sass-loader"   
         ],

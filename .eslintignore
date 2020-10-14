@@ -1,9 +1,8 @@
-# ignore service worker
-src/serviceWorker.ts
-
 # default ignore
 !**/.eslintrc*
 node_modules*
+webpack.config.js
+public
 dist
 *.svg
 *.ico

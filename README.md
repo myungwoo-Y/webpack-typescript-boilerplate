@@ -1,1 +1,1 @@
-# webpack-boilerplate
+# webpack-typescript-boilerplate
